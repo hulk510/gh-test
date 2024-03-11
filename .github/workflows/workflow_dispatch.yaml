@@ -1,0 +1,35 @@
+name: Manual workflow with inputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        description: 'Choose option choice'
+        required: true
+        default: 'default'
+        type: choice
+        options:
+          - default
+          - option1
+          - option2
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
+jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Environment: $ENVIRONMENT"
+          echo "Tags: $TAGS"
+          echo "Choice: $CHOICE"
+        env:
+          ENVIRONMENT: ${{ inputs.environment }}
+          TAGS: ${{ inputs.tags }}
+          CHOICE: ${{ inputs.choice }}
