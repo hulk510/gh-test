@@ -6,6 +6,7 @@ on:
       choice:
         description: 'Choose option choice'
         required: true
+        default: ''
         type: choice
         options:
           - default
