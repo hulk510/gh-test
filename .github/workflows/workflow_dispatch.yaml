@@ -30,6 +30,7 @@ env:
 jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Check Env
         run: |
