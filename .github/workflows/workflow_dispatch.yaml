@@ -6,7 +6,7 @@ on:
       choice:
         description: 'Choose option choice'
         required: true
-        default: ''
+        default: 'default'
         type: choice
         options:
           - default
@@ -25,6 +25,12 @@ jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
     steps:
+      - name: Check Env
+        run: |
+          if [[ "$INPUT_ENVIRONMENT" != "option1" && "$INPUT_ENVIRONMENT" != "option2" ]]; then
+            echo "::error::You must specify 'option1' or 'option2' for the environment input."
+            exit 1
+          fi
       - run: |
           echo "Environment: $ENVIRONMENT"
           echo "Tags: $TAGS"
