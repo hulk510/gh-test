@@ -28,7 +28,7 @@ jobs:
       - name: Check Env
         run: |
           if [[ "$INPUT_ENVIRONMENT" != "option1" && "$INPUT_ENVIRONMENT" != "option2" ]]; then
-            echo "::error::You must specify 'option1' or 'option2' for the environment input."
+            echo "error You must specify 'option1' or 'option2' for the environment input."
             exit 1
           fi
       - run: |
